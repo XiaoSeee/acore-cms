@@ -36,7 +36,7 @@ class FieldElements {
 
         $bannedChars = array();
         ?>
-        <label for="acore_char_sel">Select the character: </label>
+        <label for="acore_char_sel">选择您接收礼品角色：</label>
         <select id="acore_char_sel" class="acore_char_sel" name="acore_char_sel">
             <?php
 

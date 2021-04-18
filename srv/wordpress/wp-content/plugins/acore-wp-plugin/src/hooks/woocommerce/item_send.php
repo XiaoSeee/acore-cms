@@ -79,14 +79,14 @@ class WC_ItemSend extends \ACore\Lib\WpClass {
             ?>
             <br>
             <?php
-            FieldElements::destCharacter(__("Or send it as a present for: ", 'acore-wp-plugin'));
+            FieldElements::destCharacter(__("或将其作为礼物发送给：", 'acore-wp-plugin'));
             ?>
             <br>
-            <label for="acore_msg_dest">Send a message (optional):</label> 
+            <label for="acore_msg_dest">发送消息（可选）：</label> 
             <textarea maxlength="200" id="acore_msg_dest" class="acore_msg_dest" name="acore_msg_dest"></textarea>
             <br>
             <br>
-            <a target="_blank" href='https://wowgaming.altervista.org/aowow/?item=<?= $sku->itemId ?>'><?=__('Show details', 'acore-wp-plugin')?></a>
+            <a target="_blank" href='https://cn.wowhead.com/item=<?= $sku->itemId ?>'><?=__('详情', 'acore-wp-plugin')?></a>
             <br>
             <br>
             <?php
@@ -222,10 +222,10 @@ class WC_ItemSend extends \ACore\Lib\WpClass {
                     if ($sku) {
                         $charName = self::getCharName($item["acore_char_guid"]);
 
-                        $obj = "Shop Item";
+                        $obj = "捐赠礼品";
                         $msg = $item["acore_msg_dest"];
                         if (empty($msg))
-                            $msg = "This item has been sent from the Shop.";
+                            $msg = "感谢您的慷慨捐赠，这是回馈给您的礼品！";
 
                         $qty = $item["qty"];
 
