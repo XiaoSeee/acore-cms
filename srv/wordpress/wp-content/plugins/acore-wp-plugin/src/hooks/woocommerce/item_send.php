@@ -48,7 +48,7 @@ class WC_ItemSend extends \ACore\Lib\WpClass {
         if (!$sku)
             return;
 
-        $link="https://wowgaming.altervista.org/aowow/?item=" . $sku->itemId;
+        $link="https://cn.wowhead.com/item=" . $sku->itemId;
 
         echo "<p><a href='$link' target='_blank'>Details</a></p>";
     }
@@ -59,7 +59,7 @@ class WC_ItemSend extends \ACore\Lib\WpClass {
             $sku = self::getSkuItem($product->get_sku());
             if (!$sku)
                 return;
-            return "<a href='https://wowgaming.altervista.org/aowow/?item=" . $sku->itemId . "'>$title</a>";
+            return "<a href='https://cn.wowhead.com/item=" . $sku->itemId . "'>$title</a>";
         }
         //Return the normal Title if conditions aren't met
         return $title;
@@ -72,6 +72,7 @@ class WC_ItemSend extends \ACore\Lib\WpClass {
         if (!$sku)
             return;
 
+        $current_user = wp_get_current_user();
         $current_user = wp_get_current_user();
 
         if ($current_user) {
@@ -161,11 +162,11 @@ class WC_ItemSend extends \ACore\Lib\WpClass {
 
             $char = $charRepo->findOneByGuid($charId);
 
-            $charName = $char ? $char->getName() : "Character <$charId> doesn't exist!";
+            $charName = $char ? $char->getName() : "角色 <$charId> 不存在！";
 
-            $custom_items[] = array("name" => 'Character', "value" => $charName);
-            $custom_items[] = array("name" => 'Item', "value" => $sku->itemId);
-            $custom_items[] = array("name" => 'Details', "value" => "<a target='_blank' href='https://wowgaming.altervista.org/aowow/?item=" . $sku->itemId . "'>Show details</a>");
+            $custom_items[] = array("name" => '角色', "value" => $charName);
+            $custom_items[] = array("name" => '物品', "value" => $sku->itemId);
+            $custom_items[] = array("name" => '详情', "value" => "<a target='_blank' href='https://cn.wowhead.com/item=" . $sku->itemId . "'>显示详情</a>");
         }
         return $custom_items;
     }
@@ -257,7 +258,7 @@ class WC_ItemSend extends \ACore\Lib\WpClass {
         $charRepo = ACoreServices::I()->getCharactersRepo();
         $char = $charRepo->findOneByGuid($charId);
         if (!$char || !$char->getName()) { // even name is empty ( deleted char )
-            throw new \Exception("The character <$charId> does not exist!");
+            throw new \Exception("角色 <$charId> 不存在！");
         }
 
         return $char->getName();

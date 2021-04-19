@@ -14,7 +14,7 @@ class FieldElements {
         $account = $accRepo->findOneByUsername($username);
         if (!$account) {
           // if the account does not exist in the core database
-          echo '<br><br><span style="color: red;">You have not an active WoW account!</span><br>';
+          echo '<br><br><span style="color: red;">请先登录一个有效的游戏账户！</span><br>';
           return;
         }
 
@@ -25,18 +25,18 @@ class FieldElements {
         $accBanRepo = $ACoreSrv->getAccountBannedRepo();
 
         if ($accBanRepo->isActiveById($accountId)) {
-            echo '<br><br><span style="color: red;">Your account is banned!</span><br>';
+            echo '<br><br><span style="color: red;">您的账户已经被禁用！</span><br>';
             return;
         }
 
         if ($deleted && count($deletedCharacters) == 0) {
-            echo '<br><span style="color: red;">You have no deleted characters to restore.</span><br><br><br>';
+            echo '<br><span style="color: red;">您并没有已经删除的角色用于恢复。</span><br><br><br>';
             return;
         }
 
         $bannedChars = array();
         ?>
-        <label for="acore_char_sel">选择您接收礼品角色：</label>
+        <label for="acore_char_sel">选择您接收礼品角色： </label>
         <select id="acore_char_sel" class="acore_char_sel" name="acore_char_sel">
             <?php
 
@@ -59,7 +59,7 @@ class FieldElements {
         <br>
         <?php
         if ($bannedChars) {
-            echo "Some characters in your account are banned: <br>";
+            echo "您这些角色已经被禁用： <br>";
             echo implode(",", $bannedChars) . "<br>";
         }
     }
@@ -67,14 +67,14 @@ class FieldElements {
     public static function destCharacter($label) {
         ?>
         <label for="acore_char_dest"><?= $label ?></label>
-        <input type="text" placeholder="Character name..." id="acore_char_dest" class="acore_char_dest" name="acore_char_dest">
+        <input type="text" placeholder="角色名" id="acore_char_dest" class="acore_char_dest" name="acore_char_dest">
         <br>
         <?php
     }
 
     public static function destAccount() {
         ?>
-        <label for="acore_dest_account">Destination account: </label>
+        <label for="acore_dest_account">目标账户： </label>
         <input required type="text" id="acore_dest_account" class="acore_dest_account" name="acore_dest_account">
         <br>
         <?php

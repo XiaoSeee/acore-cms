@@ -134,7 +134,7 @@ class WC_CharTransfer extends \ACore\Lib\WpClass {
 
             $char = $charRepo->findOneByGuid($charId);
 
-            $charName = $char ? $char->getName() : "The character <$charId> does not exist!";
+            $charName = $char ? $char->getName() : "角色 <$charId> 不存在！";
 
             $custom_items[] = array("name" => 'Character', "value" => $charName);
             $custom_items[] = array("name" => 'Destination Account', "value" => $acc);
