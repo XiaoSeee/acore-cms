@@ -16,13 +16,13 @@ services:
       # you cannot override the .env.docker ones (by design)
       - .env.docker
     ports:
-      - ${DB_EXTERNAL_PORT:-3032:3306}
+      - ${MYSQL_EXTERNAL_PORT:-3032:3306}
     environment:
       DOCKER_CONTAINER: 1
-      MYSQL_ROOT_PASSWORD: flkdsjalfh
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-flkdsjalfh}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-wordpress}
+      MYSQL_USER: ${MYSQL_USER:-wordpress}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-wordpress}
     networks:
       - local-private-net
     healthcheck:
@@ -53,8 +53,8 @@ services:
     environment:
       DOCKER_CONTAINER: 1
       WORDPRESS_DB_HOST: wp-db:3306
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_USER: ${MYSQL_USER:-wordpress}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD:-wordpress}
       PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1
       _OPCACHE_MAX_ACCELERATED_FILES: 100000
       PHP_OPCACHE_MEMORY_CONSUMPTION: 64
