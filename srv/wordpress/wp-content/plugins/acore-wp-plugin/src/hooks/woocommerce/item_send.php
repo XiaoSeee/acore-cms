@@ -48,7 +48,7 @@ class WC_ItemSend extends \ACore\Lib\WpClass {
         if (!$sku)
             return;
 
-        $link="https://80.wowfan.net/item=" . $sku->itemId;
+        $link="https://80.wowfan.net/?item=" . $sku->itemId;
 
         echo "<p><a href='$link' target='_blank'>详情</a></p>";
     }
@@ -59,7 +59,7 @@ class WC_ItemSend extends \ACore\Lib\WpClass {
             $sku = self::getSkuItem($product->get_sku());
             if (!$sku)
                 return;
-            return "<a href='https://80.wowfan.net/item=" . $sku->itemId . "'>$title</a>";
+            return "<a href='https://80.wowfan.net/?item=" . $sku->itemId . "'>$title</a>";
         }
         //Return the normal Title if conditions aren't met
         return $title;
@@ -87,7 +87,7 @@ class WC_ItemSend extends \ACore\Lib\WpClass {
             <textarea maxlength="200" id="acore_msg_dest" class="acore_msg_dest" name="acore_msg_dest"></textarea>
             <br>
             <br>
-            <a target="_blank" href='https://80.wowfan.net/item=<?= $sku->itemId ?>'><?=__('详情', 'acore-wp-plugin')?></a>
+            <a target="_blank" href='https://80.wowfan.net/?item=<?= $sku->itemId ?>'><?=__('详情', 'acore-wp-plugin')?></a>
             <br>
             <br>
             <?php
@@ -166,7 +166,7 @@ class WC_ItemSend extends \ACore\Lib\WpClass {
 
             $custom_items[] = array("name" => '角色', "value" => $charName);
             $custom_items[] = array("name" => '物品', "value" => $sku->itemId);
-            $custom_items[] = array("name" => '详情', "value" => "<a target='_blank' href='https://80.wowfan.net/item=" . $sku->itemId . "'>显示详情</a>");
+            $custom_items[] = array("name" => '详情', "value" => "<a target='_blank' href='https://80.wowfan.net/?item=" . $sku->itemId . "'>显示详情</a>");
         }
         return $custom_items;
     }
