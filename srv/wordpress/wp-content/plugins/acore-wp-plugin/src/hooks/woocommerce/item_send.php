@@ -59,7 +59,7 @@ class WC_ItemSend extends \ACore\Lib\WpClass {
             $sku = self::getSkuItem($product->get_sku());
             if (!$sku)
                 return;
-            return "<a href='https://80.wowfan.net/?item=" . $sku->itemId . "'>$title</a>";
+            return "<a target='_blank' href='https://80.wowfan.net/?item=" . $sku->itemId . "'>$title</a>";
         }
         //Return the normal Title if conditions aren't met
         return $title;
