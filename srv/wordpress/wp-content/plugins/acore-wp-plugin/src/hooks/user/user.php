@@ -366,3 +366,17 @@ function save_extra_user_profile_fields( $user_id ) {
     }
 }
 
+// 登录之后返回首页
+add_filter( "login_redirect", __NAMESPACE__ . "\my_login_redirect", 10, 3 );
+function my_login_redirect( $redirect_to, $request ) {
+  if( empty( $redirect_to ) || $redirect_to == 'wp-admin/' || $redirect_to == admin_url() )
+    return home_url();
+  else
+    return $redirect_to;
+}
+
+// 对非 Administrator 用户均隐藏顶部工具条（Admin Bar）
+add_filter( 'show_admin_bar', __NAMESPACE__ . '\my_function_admin_bar');
+function my_function_admin_bar($content) {
+    return ( current_user_can( 'administrator' ) ) ? $content : false;
+}
